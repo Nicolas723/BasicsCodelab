@@ -17,6 +17,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -103,7 +104,7 @@ private fun Greeting(name: String) {
 
 @Composable
 private fun CardContent(name: String) {
-    val expanded by remember { mutableStateOf(false) }
+    var expanded by remember { mutableStateOf(false) }
 
     Row(
         modifier = Modifier
@@ -133,9 +134,13 @@ private fun CardContent(name: String) {
                 )
             }
         }
+        ElevatedButton(
+            onClick = { expanded = !expanded }
+        ) {
+            Text(if (expanded) "Show less" else "Show more")
+        }
     }
 }
-
 
 @Preview(
     showBackground = true,
